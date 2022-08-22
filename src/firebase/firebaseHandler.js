@@ -1,4 +1,4 @@
-import { getDatabase, ref, get, onValue } from "firebase/database";
+import { getDatabase, ref, get, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -11,30 +11,50 @@ const firebaseConfig = {
   
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+const db = getDatabase(app);
 export const readOpportunities = () => {
-    const db = getDatabase(app);
+    
     const oppRef = ref(db, 'opportunities');
 
     return get(oppRef).then((snapshot) => {
         const childArray = [];
         snapshot.forEach((child) => {
-            const { dateFrom, dateTo, description, location, title } = child.val();
+            const { dateFrom, dateTo, description, location, title, spots } = child.val();
             childArray.push({
                 dateFrom, 
                 dateTo, 
                 description, 
                 location, 
-                title
+                title,
+                spots
             });
         })
         return childArray;
     }
     )
-    
-    // return onValue(oppRef, (snapshot) => {
-    //     const data = snapshot.val();
-    //     //console.log(data)
-    //     return data
-    // });
+}
+
+export const writeOpportunities = (dateFrom, dateTo, description, location, title, spots) => {
+    const date = new Date()
+    const time = date.getTime().toString()
+    const oppRef = ref(db, 'opportunities/'+time);
+    set(oppRef, {
+        dateFrom: dateFrom, 
+        dateTo: dateTo, 
+        description: description, 
+        location: location, 
+        title: title,
+        spots: spots
+    })
+    addLocations(location)
+}
+
+export const addLocations = (location) => {
+    const date = new Date()
+    const time = date.getTime().toString()
+    const locRef = ref (db, 'locations/'+time)
+
+    set(locRef, {
+        location: location
+      });
 }
