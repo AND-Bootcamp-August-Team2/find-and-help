@@ -6,17 +6,20 @@ import Navbar from './components/navbar';
 import { readOpportunities } from './firebase/firebaseHandler'
 
 function App() {
+""
+  const [dataCheck, setDataCheck] = useState([])
 
-  const [data, setData] = useState()
-
-  useEffect( async () => {
+  useEffect( () => {
+    const loadData = async () => {
+      const data = await readOpportunities()
+      setDataCheck(data)
+    }
     
-    const data = await readOpportunities()
-    setData(data)
+    loadData()
+
   }, []);
-
-
-
+  
+  console.log(dataCheck)
 
   return (
     <div
