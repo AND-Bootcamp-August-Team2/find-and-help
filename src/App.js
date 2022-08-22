@@ -3,6 +3,7 @@ import Hero from './components/hero';
 import Sidebar from './components/sidebar';
 import Content from './components/content';
 import Navbar from './components/navbar';
+import { readOpportunities } from './firebase/firebaseHandler'
 
 function App() {
 
