@@ -1,12 +1,27 @@
+import React, { useState, useEffect } from 'react';
 import OpportunityCard from './opportunityCard';
+import { readOpportunities } from '../firebase/firebaseHandler';
 
 const Content = () => {
+  const [opportunities, setOpportunities] = useState([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const opportunitiesData = await readOpportunities();
+      setOpportunities(opportunitiesData);
+    };
+    loadData();
+  }, []);
+
   return (
-    <div className='grid-in-content flex flex-col gap-6 bg-slate-300 mr-6 h-max min-h-full p-10 w-full md:w-auto md:rounded-tr-2xl'>
-      <OpportunityCard />
-      <OpportunityCard />
-      <OpportunityCard />
-      <OpportunityCard />
+    <div className='grid-in-content bg-slate-300 mr-6 h-max min-h-full p-10 w-full md:w-auto md:rounded-tr-2xl'>
+      <ul className='flex flex-col gap-6'>
+        {opportunities.map((opportunity, i) => (
+          <li key={opportunity + i}>
+            <OpportunityCard opportunity={opportunity} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

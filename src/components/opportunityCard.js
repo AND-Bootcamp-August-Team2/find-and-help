@@ -1,22 +1,32 @@
-const OpportunityCard = () => {
+import React from 'react';
+
+const ParseDate = (date) => {
+  const dateParse = new Date(date).toLocaleDateString('en-gb');
+  return dateParse === 'Invalid Date' ? date : dateParse;
+};
+
+const OpportunityCard = ({ opportunity }) => {
   return (
     <div className='card static md:card-side bg-base-100 shadow-xl md:max-h-[400px]'>
       <figure>
         <img src='https://placeimg.com/400/400/arch' alt='Album' className='' />
       </figure>
       <div className='card-body'>
-        <h2 className='card-title flex-none'>New Volunteering Opportunity</h2>
-        <p className='overflow-hidden'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae
-          ornare mi. Suspendisse ultrices fermentum risus sed pharetra. Nunc
-          facilisis pellentesque ipsum, vitae faucibus metus mattis non. Quisque
-          ligula sem, aliquam vitae ex ut, suscipit hendrerit turpis. Quisque
-          tristique ex vel consequat semper. Vestibulum et justo sem. Quisque
-          consequat posuere justo sed dictum. Pellentesque a vulputate enim.
-          Fusce venenatis convallis leo, id blandit lorem pellentesque vitae.
-        </p>
+        <span className='flex gap-2 justify-between items-baseline flex-wrap'>
+          <h2 className='card-title flex-none text-3xl'>{opportunity.title}</h2>
+          <div className='badge badge-accent badge-lg shrink-0 whitespace-nowrap'>
+            {ParseDate(opportunity.dateFrom)} - {ParseDate(opportunity.dateTo)}
+          </div>
+        </span>
+        <div className='flex flex-wrap items-baseline gap-2'>
+          <h3 className='text-lg text-gray-600'>{opportunity.location}</h3>
+          <div className='badge text-gray-600 badge-outline'>
+            {opportunity.spots} spots available
+          </div>
+        </div>
+
+        <p className='overflow-hidden text-base'>{opportunity.description}</p>
         <div className='card-actions justify-end flex-none'>
-          <button className='btn btn-accent'>Set Reminder</button>
           <button className='btn btn-primary'>Details</button>
         </div>
       </div>
