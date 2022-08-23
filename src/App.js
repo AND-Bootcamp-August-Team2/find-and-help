@@ -20,7 +20,7 @@ function App() {
       setLocations(locationsData)
 
       // Testing write opportunities
-      // writeOpportunities("10/08/22", "11/08/22", "descrip1","Leeds","Opportunity 1",5)
+ 
     }
     
     loadData()
