@@ -1,4 +1,6 @@
-const OpportunityCard = () => {
+import { gotoGcal } from '../gcal/gcal';
+
+function OpportunityCard() {
   return (
     <div className='card static md:card-side bg-base-100 shadow-xl md:max-h-[400px]'>
       <figure>
@@ -16,12 +18,12 @@ const OpportunityCard = () => {
           Fusce venenatis convallis leo, id blandit lorem pellentesque vitae.
         </p>
         <div className='card-actions justify-end flex-none'>
-          <button className='btn btn-accent'>Set Reminder</button>
+          <button className='btn btn-accent' onClick={gotoGcal}>Set Reminder</button>
           <button className='btn btn-primary'>Details</button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default OpportunityCard;
