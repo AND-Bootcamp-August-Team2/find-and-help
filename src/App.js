@@ -4,7 +4,8 @@ import Sidebar from './components/sidebar';
 import Content from './components/content';
 import Navbar from './components/navbar';
 import { LocationContextProvider } from './contexts/locationContext';
-import { readOpportunities, writeOpportunities, readLocations } from './firebase/firebaseHandler'
+//import writeOpportunities when needed
+import { readOpportunities, readLocations } from './firebase/firebaseHandler'
 
 function App() {
 ""
@@ -33,6 +34,11 @@ function App() {
   for (let i = 0; i < locations.length; i++) {
     console.log(locations[i].location)
   }
+
+  for (let i = 0; i < opportunities.length; i++) {
+    console.log(opportunities[i])
+  }
+  
   
 
   return (
