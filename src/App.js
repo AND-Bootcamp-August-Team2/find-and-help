@@ -9,9 +9,9 @@ function App() {
   return (
     <LocationContextProvider>
       <div
-        className='grid grid-areas-smlayout grid-cols-smlayout grid-rows-smlayout 
+        className="grid grid-areas-smlayout grid-cols-smlayout grid-rows-smlayout 
     md:grid-areas-mdlayout md:grid-cols-mdlayout md:grid-rows-mdlayout 
-    h-full bg-gradient-to-br from-slate-300 to-slate-200 bg-auto'
+    h-full bg-gradient-to-br from-red-50 to-red-100"
       >
         <Hero />
         <Navbar />

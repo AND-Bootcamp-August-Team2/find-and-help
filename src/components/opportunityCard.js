@@ -7,9 +7,9 @@ const ParseDate = (date) => {
 
 const OpportunityCard = ({ opportunity }) => {
   return (
-    <div className='card static md:card-side bg-base-100 shadow-xl md:max-h-[400px]'>
+    <div className="card static md:card-side bg-white shadow-xl md:max-h-[400px]">
       <figure>
-        <img src='https://placeimg.com/400/400/arch' alt='Album' className='' />
+        <img src="https://placeimg.com/400/400/arch" alt="Album" className="" />
       </figure>
       <div className='card-body'>
         <span className='flex gap-2 justify-between items-baseline flex-wrap'>
