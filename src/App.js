@@ -22,15 +22,9 @@ function App() {
 
   }, []);
 
-  // testing printing out location as text
-  for (let i = 0; i < locations.length; i++) {
-    console.log(locations[i].location)
-  }
-
   // leave it here so we're using opportunities for now to prevent warnings.
-  for (let i = 0; i < opportunities.length; i++) {
-    console.log(opportunities[i])
-  }
+    console.log(opportunities[0])
+    console.log(locations[0].location)
 
   return (
     <LocationContextProvider>
