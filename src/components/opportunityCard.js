@@ -1,3 +1,5 @@
+import OpportunityDetailsModal from "./modals/opportunityDetailsModal";
+
 const OpportunityCard = () => {
   return (
     <div className="card static md:card-side bg-base-100 shadow-xl md:max-h-[400px]">
@@ -17,7 +19,7 @@ const OpportunityCard = () => {
         </p>
         <div className="card-actions justify-end flex-none">
           <button className="btn btn-accent">Set Reminder</button>
-          <button className="btn btn-primary">Details</button>
+          <OpportunityDetailsModal />
         </div>
       </div>
     </div>
