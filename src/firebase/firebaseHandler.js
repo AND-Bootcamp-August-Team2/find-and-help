@@ -12,10 +12,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-export const readOpportunities = () => {
-    
-    const oppRef = ref(db, 'opportunities');
 
+export const readOpportunities = () => {
+    const oppRef = ref(db, 'opportunities');
     return get(oppRef).then((snapshot) => {
         const childArray = [];
         snapshot.forEach((child) => {
@@ -34,10 +33,23 @@ export const readOpportunities = () => {
     )
 }
 
+export const readLocations = () => {
+    const locRef = ref(db, 'locations');
+    return get(locRef).then((snapshot) => {
+        const childArray = [];
+        snapshot.forEach((child) => {
+            const {location} = child.val();
+            childArray.push({
+                location
+            });
+        })
+        return childArray;
+    })
+}
+
 export const writeOpportunities = (dateFrom, dateTo, description, location, title, spots) => {
-    const date = new Date()
-    const time = date.getTime().toString()
-    const oppRef = ref(db, 'opportunities/'+time);
+    const id = createID()
+    const oppRef = ref(db, 'opportunities/'+id);
     set(oppRef, {
         dateFrom: dateFrom, 
         dateTo: dateTo, 
@@ -46,15 +58,18 @@ export const writeOpportunities = (dateFrom, dateTo, description, location, titl
         title: title,
         spots: spots
     })
-    addLocations(location)
 }
 
 export const addLocations = (location) => {
-    const date = new Date()
-    const time = date.getTime().toString()
-    const locRef = ref (db, 'locations/'+time)
+    const id = createID()
+    const locRef = ref (db, 'locations/'+id)
 
     set(locRef, {
         location: location
       });
+}
+
+const createID = () => {
+    const date = new Date()
+    return date.getTime().toString()
 }

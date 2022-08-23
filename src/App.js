@@ -3,26 +3,36 @@ import Hero from './components/hero';
 import Sidebar from './components/sidebar';
 import Content from './components/content';
 import Navbar from './components/navbar';
-import { readOpportunities, addLocations, writeOpportunities } from './firebase/firebaseHandler'
+import { readOpportunities, writeOpportunities, readLocations } from './firebase/firebaseHandler'
 
 function App() {
 ""
   const [opportunities, setOpportunities] = useState([])
+  const [locations, setLocations] = useState([])
 
   useEffect( () => {
     const loadData = async () => {
-      const data = await readOpportunities()
-      setOpportunities(data)
-      //Testing write opportunities
-      writeOpportunities("10/08/22", "11/08/22", "descrip1","Leeds","Opportunity 1",5)
+      const opportunitiesData = await readOpportunities()
+      const locationsData = await readLocations()
+      setOpportunities(opportunitiesData)
+      setLocations(locationsData)
+
+      // Testing write opportunities
+      // writeOpportunities("10/08/22", "11/08/22", "descrip1","Leeds","Opportunity 1",5)
     }
     
     loadData()
 
   }, []);
   
-  //Print opportunity for testing
-  console.log(opportunities[0])
+  // testing read locations (list of objects)
+  // console.log(locations)
+  
+  // testing printing out location as text
+  for (let i = 0; i < locations.length; i++) {
+    console.log(locations[i].location)
+  }
+  
 
   return (
     <div
