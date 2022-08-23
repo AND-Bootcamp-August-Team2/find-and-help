@@ -1,9 +1,10 @@
 import { LocationContext } from '../contexts/locationContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 const NewOpportunityForm = ({setTitle, setDescription, setFromDate, setToDate, setLocation, setSpots}) => {
   const [location] = useContext(LocationContext);
-  const spots = [1,2,3,4,5,6,7,8,9,10]
+  const [spotValue, setSpotValue] = useState(1);
+  
   return (
     <div>
       <div className='form-control w-full max-w-md'>
@@ -35,11 +36,17 @@ const NewOpportunityForm = ({setTitle, setDescription, setFromDate, setToDate, s
         <label className='label pt-4'>
           <span className='label-text'>Availability</span>
         </label>
-        <select className="select select-bordered w-full max-w-md" onChange={input => setSpots(Number(input.target.value))}>
-            {spots.map((spots, i) => (
-              <option key={spots+i}>{spots.toString()}</option>
-            ))}
-        </select>
+        <input
+          type='text'
+          pattern="^[1-9][0-9]*$"
+          placeholder='Number of available spots'
+          value={spotValue}
+          className='input input-bordered w-full max-w-md'
+          onChange = {(input) => {
+            setSpotValue(input.target.validity.valid ? input.target.value : spotValue)
+            setSpots(input.target.validity.valid ? Number(input.target.value) : Number(spotValue))
+          }}
+        />
         <ul>
           <li className='pt-4'>
             <label htmlFor='fromDate' className='label-text'>
