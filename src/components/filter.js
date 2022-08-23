@@ -1,6 +1,9 @@
+import React, { useContext } from 'react';
 import Location from './location';
+import { LocationContext } from '../contexts/locationContext';
 
 const Filter = () => {
+  const [location] = useContext(LocationContext);
   return (
     <div>
       <h2 className='font-bold text-2xl'>Filters</h2>
@@ -8,18 +11,11 @@ const Filter = () => {
         <summary className='font-bold text-lg'>Locations</summary>
         <div className='form-control rounded-lg p-2 m-1 bg-slate-100'>
           <ul>
-            <li>
-              <Location name='Glasgow' />
-            </li>
-            <li>
-              <Location name='Edinburgh' />
-            </li>
-            <li>
-              <Location name='Leeds' />
-            </li>
-            <li>
-              <Location name='Manchester' />
-            </li>
+            {location.map((location, i) => (
+              <li key={location + i}>
+                <Location name={location.toString()} />
+              </li>
+            ))}
           </ul>
         </div>
       </details>
