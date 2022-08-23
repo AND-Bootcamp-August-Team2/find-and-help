@@ -3,6 +3,7 @@ import Hero from './components/hero';
 import Sidebar from './components/sidebar';
 import Content from './components/content';
 import Navbar from './components/navbar';
+import { LocationContextProvider } from './contexts/locationContext';
 import { readOpportunities, writeOpportunities, readLocations } from './firebase/firebaseHandler'
 
 function App() {
@@ -35,16 +36,18 @@ function App() {
   
 
   return (
-    <div
-      className='grid grid-areas-smlayout grid-cols-smlayout grid-rows-smlayout 
+    <LocationContextProvider>
+      <div
+        className='grid grid-areas-smlayout grid-cols-smlayout grid-rows-smlayout 
     md:grid-areas-mdlayout md:grid-cols-mdlayout md:grid-rows-mdlayout 
     h-full bg-gradient-to-br from-slate-300 to-slate-200 bg-auto'
-    >
-      <Hero />
-      <Navbar />
-      <Sidebar />
-      <Content />
-    </div>
+      >
+        <Hero />
+        <Navbar />
+        <Sidebar />
+        <Content />
+      </div>
+    </LocationContextProvider>
   );
 }
 
