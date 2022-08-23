@@ -4,11 +4,9 @@ import Sidebar from './components/sidebar';
 import Content from './components/content';
 import Navbar from './components/navbar';
 import { LocationContextProvider } from './contexts/locationContext';
-//import writeOpportunities when needed
 import { readOpportunities, readLocations } from './firebase/firebaseHandler'
 
 function App() {
-""
   const [opportunities, setOpportunities] = useState([])
   const [locations, setLocations] = useState([])
 
@@ -18,28 +16,21 @@ function App() {
       const locationsData = await readLocations()
       setOpportunities(opportunitiesData)
       setLocations(locationsData)
-
-      // Testing write opportunities
-      // writeOpportunities("10/08/22", "11/08/22", "descrip1","Leeds","Opportunity 1",5)
     }
     
     loadData()
 
   }, []);
-  
-  // testing read locations (list of objects)
-  // console.log(locations)
-  
+
   // testing printing out location as text
   for (let i = 0; i < locations.length; i++) {
     console.log(locations[i].location)
   }
 
+  // leave it here so we're using opportunities for now to prevent warnings.
   for (let i = 0; i < opportunities.length; i++) {
     console.log(opportunities[i])
   }
-  
-  
 
   return (
     <LocationContextProvider>
