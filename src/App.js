@@ -4,7 +4,7 @@ import Sidebar from './components/sidebar';
 import Content from './components/content';
 import Navbar from './components/navbar';
 import { LocationContextProvider } from './contexts/locationContext';
-import { readOpportunities, readLocations } from './firebase/firebaseHandler'
+import { readOpportunities } from './firebase/firebaseHandler'
 
 function App() {
   const [opportunities, setOpportunities] = useState([])
