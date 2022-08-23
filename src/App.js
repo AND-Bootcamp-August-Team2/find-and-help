@@ -8,23 +8,17 @@ import { readOpportunities, readLocations } from './firebase/firebaseHandler'
 
 function App() {
   const [opportunities, setOpportunities] = useState([])
-  const [locations, setLocations] = useState([])
 
   useEffect( () => {
     const loadData = async () => {
       const opportunitiesData = await readOpportunities()
-      const locationsData = await readLocations()
       setOpportunities(opportunitiesData)
-      setLocations(locationsData)
     }
-    
     loadData()
-
   }, []);
 
   // leave it here so we're using opportunities for now to prevent warnings.
-    console.log(opportunities[0])
-    console.log(locations[0].location)
+  console.log(opportunities[0])
 
   return (
     <LocationContextProvider>
