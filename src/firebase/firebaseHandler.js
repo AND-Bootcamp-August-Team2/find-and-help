@@ -49,7 +49,7 @@ export const readLocations = () => {
 
 export const writeOpportunities = (dateFrom, dateTo, description, location, title, spots) => {
     const id = createID()
-    const oppRef = ref(db, 'opportunities/'+id);
+    const oppRef = ref(db, 'test-opportunities/'+id);
     set(oppRef, {
         dateFrom: dateFrom, 
         dateTo: dateTo, 

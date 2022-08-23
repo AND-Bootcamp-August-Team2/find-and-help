@@ -17,9 +17,6 @@ function App() {
     loadData()
   }, []);
 
-  // leave it here so we're using opportunities for now to prevent warnings.
-  console.log(opportunities[0])
-
   return (
     <LocationContextProvider>
       <div
