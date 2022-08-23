@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 const Location = ({ name }) => {
   return (
-    <label className='label cursor-pointer justify-start gap-2'>
+    <label className="label cursor-pointer justify-start gap-2">
       <input
-        type='checkbox'
+        type="checkbox"
         id={name}
         defaultChecked={false}
-        className='checkbox checkbox-accent'
+        className="checkbox checkbox-primary checkbox"
       />
-      <span className='label-text' htmlFor={name}>
+      <span className="label-text text-base-100" htmlFor={name}>
         {name}
       </span>
     </label>
