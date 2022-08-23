@@ -19,7 +19,6 @@ function App() {
       setOpportunities(opportunitiesData)
       setLocations(locationsData)
 
-      // Testing write opportunities
  
     }
     
