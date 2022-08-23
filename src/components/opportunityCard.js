@@ -1,12 +1,14 @@
 const OpportunityCard = () => {
   return (
-    <div className='card static md:card-side bg-base-100 shadow-xl md:max-h-[400px]'>
+    <div className="card static md:card-side bg-white shadow-xl md:max-h-[400px]">
       <figure>
-        <img src='https://placeimg.com/400/400/arch' alt='Album' className='' />
+        <img src="https://placeimg.com/400/400/arch" alt="Album" className="" />
       </figure>
-      <div className='card-body'>
-        <h2 className='card-title flex-none'>New Volunteering Opportunity</h2>
-        <p className='overflow-hidden'>
+      <div className="card-body">
+        <h2 className="card-title flex-none text-base-100">
+          New Volunteering Opportunity
+        </h2>
+        <p className="overflow-hidden text-base-100">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae
           ornare mi. Suspendisse ultrices fermentum risus sed pharetra. Nunc
           facilisis pellentesque ipsum, vitae faucibus metus mattis non. Quisque
@@ -15,9 +17,8 @@ const OpportunityCard = () => {
           consequat posuere justo sed dictum. Pellentesque a vulputate enim.
           Fusce venenatis convallis leo, id blandit lorem pellentesque vitae.
         </p>
-        <div className='card-actions justify-end flex-none'>
-          <button className='btn btn-accent'>Set Reminder</button>
-          <button className='btn btn-primary'>Details</button>
+        <div className="card-actions justify-end flex-none">
+          <button className="btn btn-secondary text-white">Details</button>
         </div>
       </div>
     </div>
