@@ -25,9 +25,9 @@ module.exports = {
     themes: [
       {
         andDigi: {
-          primary: "#FF323C",
+          primary: "#d81f35",
           secondary: "#2897FF",
-          accent: "#A050ff",
+          accent: "#FF7900",
           neutral: "#ebe7e5",
           "base-100": "#2A303C",
           info: "#3ABFF8",

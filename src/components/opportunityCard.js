@@ -1,26 +1,37 @@
-import OpportunityDetailsModal from "./modals/opportunityDetailsModal";
+import React from "react";
 
-const OpportunityCard = () => {
+const ParseDate = (date) => {
+  const dateParse = new Date(date).toLocaleDateString("en-gb");
+  return dateParse === "Invalid Date" ? date : dateParse;
+};
+
+const OpportunityCard = ({ opportunity }) => {
   return (
     <div className="card static md:card-side bg-white shadow-xl md:max-h-[400px]">
       <figure>
         <img src="https://placeimg.com/400/400/arch" alt="Album" className="" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title flex-none text-base-100">
-          New Volunteering Opportunity
-        </h2>
-        <p className="overflow-hidden text-base-100">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae
-          ornare mi. Suspendisse ultrices fermentum risus sed pharetra. Nunc
-          facilisis pellentesque ipsum, vitae faucibus metus mattis non. Quisque
-          ligula sem, aliquam vitae ex ut, suscipit hendrerit turpis. Quisque
-          tristique ex vel consequat semper. Vestibulum et justo sem. Quisque
-          consequat posuere justo sed dictum. Pellentesque a vulputate enim.
-          Fusce venenatis convallis leo, id blandit lorem pellentesque vitae.
+        <span className="flex gap-2 justify-between">
+          <h2 className="card-title font-roboto text-3xl text-base-100">
+            {opportunity.title}
+          </h2>
+          <div className="font-roboto self-center text-white badge badge-secondary badge-xl shrink-0 whitespace-nowrap">
+            {ParseDate(opportunity.dateFrom)} - {ParseDate(opportunity.dateTo)}
+          </div>
+        </span>
+        <div className="flex flex-wrap items-baseline gap-2">
+          <h3 className="text-lg text-base-100">{opportunity.location}</h3>
+          <div className="badge text-base-100 badge-outline">
+            {opportunity.spots} spots available
+          </div>
+        </div>
+
+        <p className="overflow-hidden text-base text-base-100">
+          {opportunity.description}
         </p>
         <div className="card-actions justify-end flex-none">
-          <button className="btn btn-secondary text-white">Details</button>
+          <button className="btn btn-primary text-white">Details</button>
         </div>
       </div>
     </div>
