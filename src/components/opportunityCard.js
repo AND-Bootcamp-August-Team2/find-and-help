@@ -1,5 +1,4 @@
 import React from "react";
-import { gotoGcal } from '../gcal/gcal';
 
 const ParseDate = (date) => {
   const dateParse = new Date(date).toLocaleDateString("en-gb");
