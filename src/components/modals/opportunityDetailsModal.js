@@ -4,10 +4,13 @@ import CongratulationsModal from "./congratulationsModal";
 
 function OpportunityDetailsModal({ opportunity }) {
   function openCongratulationsModal() {
+    const success = reserveOpportunity(opportunity.id);
+    if (!success) {
+      // TODO: open modal showing non-success
+    }
     document.getElementById(
       opportunity.id + "-congratulations-modal"
     ).checked = true;
-    reserveOpportunity(opportunity.id);
   }
 
   const ParseDate = (date) => {

@@ -57,13 +57,13 @@ export const writeOpportunities = (
   title,
   spots
 ) => {
-  const id = createID();
+  const id = createUUID();
   const oppRef = ref(db, "opportunities/" + id);
   set(oppRef, {
-    id: createUUID(),
     dateFrom: dateFrom,
     dateTo: dateTo,
     description: description,
+    id: id,
     location: location,
     title: title,
     spots: spots,
@@ -71,7 +71,7 @@ export const writeOpportunities = (
 };
 
 export const addLocations = (location) => {
-  const id = createID();
+  const id = createUUID();
   const locRef = ref(db, "locations/" + id);
 
   set(locRef, {
@@ -79,41 +79,35 @@ export const addLocations = (location) => {
   });
 };
 
-const createID = () => {
-  const date = new Date();
-  return date.getTime().toString();
-};
-
 const createUUID = () => {
   return crypto.randomUUID();
 };
 
-export const reserveOpportunity = (id) => {
-  const opportunity = readOpportunity(id);
-  if (opportunity.spots < 1) {
-    console.error("Unable to reserve spot - none available");
-    return;
-  }
-
-  opportunity.spots -= 1;
-  const oppRef = ref(db, "opportunities/" + id);
-  set(oppRef, {
-    opportunity: opportunity,
-  });
-};
-
-const readOpportunity = (id) => {
-  console.log(id);
+// TODO: Refactor this into a readOpportunity, and a reserveOpportunity that calls it.
+export const reserveOpportunity = async (id) => {
+  // granb the opportunity from db
   const oppRef = ref(db, `opportunities/${id}`);
   get(oppRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        const opportunity = snapshot.val();
+
+        if (opportunity.spots < 1) {
+          console.error("Error booking spot, less than one available");
+          return false;
+        }
+        opportunity.spots -= 1;
+        set(oppRef, {
+          ...opportunity,
+        });
+        return true;
       } else {
         console.log("No data available");
+        return false;
       }
     })
     .catch((error) => {
       console.error(error);
+      return false;
     });
 };
