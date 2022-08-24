@@ -6,7 +6,7 @@ const OpportunityLg = () => {
     <div>
       <label
         htmlFor="opportunity-modal-lg"
-        className="btn btn-primary w-40 modal-button text-xs md:w-48 md:text-base"
+        className="btn btn-secondary w-40 modal-button text-s md:w-48 md:text-white shadow-lg"
       >
         Add Opportunity
       </label>
@@ -17,13 +17,15 @@ const OpportunityLg = () => {
       />
       <div className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">New Volunteering Opportunity</h3>
-          <AddOpportunityForm />
+          <h3 className="font-bold text-lg text-white">
+            Add Volunteering Opportunity
+          </h3>
+          <NewOpportunityForm />
           <div className="modal-action">
             <label htmlFor="opportunity-modal-lg" className="btn btn-ghost">
               Cancel
             </label>
-            <label htmlFor="opportunity-modal-lg" className="btn btn-primary">
+            <label htmlFor="opportunity-modal-lg" className="btn btn-secondary">
               Submit
             </label>
           </div>
