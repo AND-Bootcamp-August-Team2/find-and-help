@@ -7,20 +7,6 @@ import { AppContextProvider } from "./utils/appContextProvider";
 import { readOpportunities } from "./firebase/firebaseHandler";
 
 function App() {
-  const [opportunities, setOpportunities] = useState([]);
-
-  useEffect(() => {
-    const loadData = async () => {
-      const opportunitiesData = await readOpportunities();
-      setOpportunities(opportunitiesData);
-    };
-    loadData();
-  }, []);
-
-  opportunities.forEach((opp) => {
-    opp.title = "";
-  });
-
   return (
     <AppContextProvider>
       <div
