@@ -1,4 +1,5 @@
 import React from "react";
+import { gotoGcal } from "../../gcal/gcal";
 
 const CongratulationsModal = ({ opportunity }) => {
   const ParseDate = (date) => {
@@ -32,15 +33,12 @@ const CongratulationsModal = ({ opportunity }) => {
           </div>
 
           <h3 className="text-base-100">Next steps... 🐾</h3>
-          <a
-            role="button"
-            className="btn btn-block my-2"
-            href="https://calendar.google.com"
-            target="_blank"
-            rel="noreferrer"
+          <button
+            class="btn btn-secondary btn-block text-white mt-5"
+            onClick={gotoGcal(opportunity)}
           >
-            Add to your Google Calendar!
-          </a>
+            Add to Google Calendar
+          </button>
           <a
             className="btn btn-block btn-primary my-2"
             href="https://luna.and-digital.com/leave"
