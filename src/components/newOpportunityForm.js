@@ -7,22 +7,22 @@ const NewOpportunityForm = ({setTitle, setDescription, setFromDate, setToDate, s
   
   return (
     <div>
-      <div className='form-control w-full max-w-md'>
-        <label className='label'>
-          <span className='label-text'>Opportunity Title</span>
+      <div className="form-control w-full max-w-md">
+        <label className="label">
+          <span className="label-text text-white">Opportunity Title</span>
         </label>
         <input
-          type='text'
-          placeholder='Type here'
-          className='input input-bordered w-full max-w-md'
+          type="text"
+          placeholder="Type here"
+          className="input input-bordered w-full max-w-md bg-neutral "
           onChange={input => setTitle(input.target.value)}
         />
-        <label className='label pt-4'>
-          <span className='label-text'>Description</span>
+        <label className="label pt-4">
+          <span className="label-text text-white">Description</span>
         </label>
         <textarea
-          className='textarea textarea-bordered h-24'
-          placeholder='Type here'
+          className="textarea textarea-bordered h-24 bg-neutral text-black"
+          placeholder="Type here"
           onChange={input => setDescription(input.target.value)}
         ></textarea>
         <label className='label pt-4'>
@@ -48,39 +48,43 @@ const NewOpportunityForm = ({setTitle, setDescription, setFromDate, setToDate, s
           }}
         />
         <ul>
-          <li className='pt-4'>
-            <label htmlFor='fromDate' className='label-text'>
+          <li className="pt-4">
+            <label htmlFor="fromDate" className="label-text text-white">
               From:
             </label>
             <input
-              type='date'
-              id='fromDate'
-              name='fromDate'
-              className='textarea form-input mt-1
+              type="date"
+              id="fromDate"
+              name="fromDate"
+              className="textarea form-input mt-1
                 block
                 w-full
                 rounded-md
                 border-gray-300
                 shadow-sm
-                focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50'
+                focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50
+                bg-neutral
+                text-slate-400"
               onChange={input => setFromDate(input.target.value)}
             />
           </li>
-          <li className=''>
-            <label htmlFor='toDate' className='label-text pt-4'>
+          <li className="">
+            <label htmlFor="toDate" className="label-text pt-4 text-white">
               To:
             </label>
             <input
-              type='date'
-              id='toDate'
-              name='toDate'
-              className='textarea form-input mt-1
+              type="date"
+              id="toDate"
+              name="toDate"
+              className="textarea form-input mt-1
                 block
                 w-full
                 rounded-md
                 border-gray-300
                 shadow-sm
-                focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50'
+                focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50
+                bg-neutral
+                text-slate-400"
               onChange={input => setToDate(input.target.value)}
             />
           </li>
