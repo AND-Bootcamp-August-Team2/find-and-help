@@ -1,4 +1,4 @@
-import { LocationContext } from "../contexts/locationContext";
+import { LocationContext } from "../../contexts/locationContext";
 import { useContext, useState } from "react";
 
 const AddOpportunityForm = ({

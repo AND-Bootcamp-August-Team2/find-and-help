@@ -6,7 +6,7 @@ function OpportunityDetailsModal({ opportunity }) {
   function openCongratulationsModal() {
     const success = reserveOpportunity(opportunity.id);
     if (!success) {
-      // TODO: open modal showing non-success
+      alert("Couldn't do this.");
     }
     document.getElementById(
       opportunity.id + "-congratulations-modal"

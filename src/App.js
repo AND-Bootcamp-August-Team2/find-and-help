@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Hero from "./components/hero";
 import Sidebar from "./components/sidebar";
 import Content from "./components/content";
 import Navbar from "./components/navbar";
 import { AppContextProvider } from "./utils/appContextProvider";
-import { readOpportunities } from "./firebase/firebaseHandler";
 
 function App() {
   return (

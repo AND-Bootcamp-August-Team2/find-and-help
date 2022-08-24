@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddOpportunityForm from "../forms/addOpportunityForm";
-import { writeOpportunities } from "../firebase/firebaseHandler";
+import { writeOpportunities } from "../../firebase/firebaseHandler";
 
 const AddOpportunityModal = () => {
   const [title, setTitle] = useState("");
