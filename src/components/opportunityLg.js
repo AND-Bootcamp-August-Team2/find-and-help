@@ -32,7 +32,7 @@ const OpportunityLg = () => {
           <h3 className="font-bold text-lg text-white">
             Add Volunteering Opportunity
           </h3>
-          <NewOpportunityForm />
+          <AddOpportunityForm />
           <div className="modal-action">
             <label htmlFor="opportunity-modal-lg" className="btn btn-ghost">
               Cancel

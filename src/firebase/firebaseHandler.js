@@ -82,6 +82,18 @@ const createID = () => {
   return date.getTime().toString();
 };
 
+export const readOpportunity = (id) => {
+  const oppRef = ref(db, "opportunities/" + id);
+  return get(oppRef).then((snapshot) => {
+    const opportunity = snapshot.val;
+    console.log("Snapshot in fbHandler: " + opportunity);
+    if (opportunity == undefined) {
+      console.error(`Error retrieving opportunity '${id}' from database`);
+    }
+    return opportunity;
+  });
+};
+
 export const reserveOpportunity = (id) => {
   const oppRef = ref(db, "opportunities/" + id);
   return get(oppRef).then((snapshot) => {
