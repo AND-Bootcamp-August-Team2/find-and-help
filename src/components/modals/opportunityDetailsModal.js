@@ -1,10 +1,13 @@
 import React from "react";
-import { readOpportunity } from "../../firebase/firebaseHandler";
+import { reserveOpportunity } from "../../firebase/firebaseHandler";
 import CongratulationsModal from "./congratulationsModal";
 
-const OpportunityDetailsModal = ({ opportunity }) => {
+function OpportunityDetailsModal({ opportunity }) {
   function openCongratulationsModal() {
-    document.getElementById("congratulations-modal").checked = true;
+    document.getElementById(
+      opportunity.id + "-congratulations-modal"
+    ).checked = true;
+    reserveOpportunity(opportunity.id);
   }
 
   const ParseDate = (date) => {
@@ -15,14 +18,14 @@ const OpportunityDetailsModal = ({ opportunity }) => {
   return (
     <div>
       <label
-        htmlFor="opportunity-details-modal"
+        htmlFor={opportunity.id + "-details-modal"}
         className="btn btn-secondary w-40 modal-button text-s md:w-48 md:text-white md:text-lg"
       >
         View Details
       </label>
       <input
         type="checkbox"
-        id="opportunity-details-modal"
+        id={opportunity.id + "-details-modal"}
         className="modal-toggle"
       />
       <div className="modal">
@@ -62,14 +65,14 @@ const OpportunityDetailsModal = ({ opportunity }) => {
 
           <div className="modal-action">
             <label
-              htmlFor="opportunity-details-modal"
+              htmlFor={opportunity.id + "-details-modal"}
               className="btn btn-ghost"
             >
               Cancel
             </label>
             <label
               className="btn btn-secondary text-white"
-              htmlFor="opportunity-details-modal"
+              htmlFor={opportunity.id + "-details-modal"}
               onClick={openCongratulationsModal}
             >
               Sign me up!
@@ -80,6 +83,6 @@ const OpportunityDetailsModal = ({ opportunity }) => {
       <CongratulationsModal opportunity={opportunity} />
     </div>
   );
-};
+}
 
 export default OpportunityDetailsModal;

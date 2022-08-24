@@ -9,7 +9,7 @@ const CongratulationsModal = ({ opportunity }) => {
     <div>
       <input
         type="checkbox"
-        id="congratulations-modal"
+        id={opportunity.id + "-congratulations-modal"}
         className="modal-toggle"
       />
       <div className="modal" id="congratulations-modal">
@@ -51,7 +51,10 @@ const CongratulationsModal = ({ opportunity }) => {
           </a>
 
           <div className="modal-action">
-            <label htmlFor="congratulations-modal" className="btn btn-ghost">
+            <label
+              htmlFor={opportunity.id + "-congratulations-modal"}
+              className="btn btn-ghost"
+            >
               Close
             </label>
           </div>

@@ -19,12 +19,13 @@ export const readOpportunities = () => {
   return get(oppRef).then((snapshot) => {
     const childArray = [];
     snapshot.forEach((child) => {
-      const { dateFrom, dateTo, description, location, title, spots } =
+      const { dateFrom, dateTo, description, id, location, title, spots } =
         child.val();
       childArray.push({
         dateFrom,
         dateTo,
         description,
+        id,
         location,
         title,
         spots,
@@ -59,6 +60,7 @@ export const writeOpportunities = (
   const id = createID();
   const oppRef = ref(db, "opportunities/" + id);
   set(oppRef, {
+    id: createUUID(),
     dateFrom: dateFrom,
     dateTo: dateTo,
     description: description,
@@ -82,24 +84,36 @@ const createID = () => {
   return date.getTime().toString();
 };
 
-export const readOpportunity = (id) => {
-  const oppRef = ref(db, "opportunities/" + id);
-  return get(oppRef).then((snapshot) => {
-    const opportunity = snapshot.val;
-    console.log("Snapshot in fbHandler: " + opportunity);
-    if (opportunity == undefined) {
-      console.error(`Error retrieving opportunity '${id}' from database`);
-    }
-    return opportunity;
-  });
+const createUUID = () => {
+  return crypto.randomUUID();
 };
 
 export const reserveOpportunity = (id) => {
-  const oppRef = ref(db, "opportunities/" + id);
-  return get(oppRef).then((snapshot) => {
-    const updatedOpportunity = { ...snapshot };
-    updatedOpportunity.spots -= 1;
+  const opportunity = readOpportunity(id);
+  if (opportunity.spots < 1) {
+    console.error("Unable to reserve spot - none available");
+    return;
+  }
 
-    set(oppRef, { opportunity: updatedOpportunity });
+  opportunity.spots -= 1;
+  const oppRef = ref(db, "opportunities/" + id);
+  set(oppRef, {
+    opportunity: opportunity,
   });
+};
+
+const readOpportunity = (id) => {
+  console.log(id);
+  const oppRef = ref(db, `opportunities/${id}`);
+  get(oppRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
