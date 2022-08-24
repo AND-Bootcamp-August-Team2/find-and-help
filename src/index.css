@@ -19,4 +19,7 @@
     font-family: Poppins, Roboto, sans-serif;
     font-weight: 400;
   }
+  .modal-box {
+    background-color: #fff !important;
+  }
 }
