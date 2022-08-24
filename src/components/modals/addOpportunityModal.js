@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import AddOpportunityForm from "../forms/addOpportunityForm";
+import { writeOpportunities } from "../firebase/firebaseHandler";
 
 const AddOpportunityModal = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [location, setLocation] = useState("");
+  const [spots, setSpots] = useState(1);
+
   return (
     <div>
       <label
@@ -26,12 +34,32 @@ const AddOpportunityModal = () => {
       <div className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">New Volunteering Opportunity</h3>
-          <AddOpportunityForm />
+          <AddOpportunityForm
+            setTitle={setTitle}
+            setDescription={setDescription}
+            setFromDate={setFromDate}
+            setToDate={setToDate}
+            setSpots={setSpots}
+            setLocation={setLocation}
+          />
           <div className="modal-action">
             <label htmlFor="opportunity-modal" className="btn btn-ghost">
               Cancel
             </label>
-            <label htmlFor="opportunity-modal" className="btn btn-primary">
+            <label
+              htmlFor="opportunity-modal"
+              className="btn btn-primary"
+              onClick={() => {
+                writeOpportunities(
+                  fromDate,
+                  toDate,
+                  description,
+                  location,
+                  title,
+                  spots
+                );
+              }}
+            >
               Submit
             </label>
           </div>
