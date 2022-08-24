@@ -5,7 +5,7 @@ const ParseDate = (date) => {
   return dateParse === "Invalid Date" ? date : dateParse;
 };
 
-const OpportunityCard = ({ opportunity }) => {
+function OpportunityCard({ opportunity }) {
   return (
     <div className="card static md:card-side bg-white shadow-xl md:max-h-[400px]">
       <figure>
@@ -36,6 +36,6 @@ const OpportunityCard = ({ opportunity }) => {
       </div>
     </div>
   );
-};
+}
 
 export default OpportunityCard;
