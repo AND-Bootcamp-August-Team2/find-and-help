@@ -8,8 +8,8 @@ const OpportunityLg = () => {
   const [description, setDescription] = useState("")
   const [fromDate, setFromDate] = useState("")
   const [toDate, setToDate] = useState("")
-  const [location, setLocation] = useState("Warrington")
-  const [spots, setSpots] = useState(0)
+  const [location, setLocation] = useState("")
+  const [spots, setSpots] = useState(1)
 
   return (
     <div>
