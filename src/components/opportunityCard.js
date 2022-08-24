@@ -12,7 +12,7 @@ function OpportunityCard({ opportunity }) {
         <img src="https://placeimg.com/400/400/arch" alt="Album" className="" />
       </figure>
       <div className="card-body">
-        <span className="flex gap-2 justify-between">
+        <span className="flex gap-2 justify-between flex-wrap md:flex-nowrap">
           <h2 className="card-title font-roboto text-3xl text-base-100">
             {opportunity.title}
           </h2>
