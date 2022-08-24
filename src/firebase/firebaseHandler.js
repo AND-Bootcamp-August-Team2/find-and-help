@@ -40,9 +40,7 @@ export const readLocations = () => {
     const childArray = [];
     snapshot.forEach((child) => {
       const { location } = child.val();
-      childArray.push({
-        location,
-      });
+      childArray.push(location);
     });
     return childArray;
   });
@@ -71,7 +69,6 @@ export const writeOpportunities = (
 export const addLocations = (location) => {
   const id = createID();
   const locRef = ref(db, "locations/" + id);
-
   set(locRef, {
     location: location,
   });
