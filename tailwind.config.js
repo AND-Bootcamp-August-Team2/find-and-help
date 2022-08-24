@@ -45,7 +45,4 @@ module.exports = {
     require("@savvywombat/tailwindcss-grid-areas"),
     require("@tailwindcss/line-clamp"),
   ],
-  daisyui: {
-    darkTheme: "light"
-  },
 };
