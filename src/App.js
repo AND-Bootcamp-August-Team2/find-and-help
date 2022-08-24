@@ -3,7 +3,7 @@ import Hero from "./components/hero";
 import Sidebar from "./components/sidebar";
 import Content from "./components/content";
 import Navbar from "./components/navbar";
-import { LocationContextProvider } from "./contexts/locationContext";
+import { AppContextProvider } from "./utils/appContextProvider";
 import { readOpportunities } from "./firebase/firebaseHandler";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
   });
 
   return (
-    <LocationContextProvider>
+    <AppContextProvider>
       <div
         className="grid grid-areas-smlayout grid-cols-smlayout grid-rows-smlayout 
     md:grid-areas-mdlayout md:grid-cols-mdlayout md:grid-rows-mdlayout 
@@ -33,7 +33,7 @@ function App() {
         <Sidebar />
         <Content />
       </div>
-    </LocationContextProvider>
+    </AppContextProvider>
   );
 }
 
