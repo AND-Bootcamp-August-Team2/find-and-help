@@ -12,11 +12,11 @@ const OpportunityCard = ({ opportunity }) => {
         <img src="https://placeimg.com/400/400/arch" alt="Album" className="" />
       </figure>
       <div className="card-body">
-        <span className="flex gap-2 justify-between items-baseline flex-wrap">
-          <h2 className="card-title flex-none text-3xl text-base-100">
+        <span className="flex gap-2 justify-between">
+          <h2 className="card-title font-roboto text-3xl text-base-100">
             {opportunity.title}
           </h2>
-          <div className="text-white badge badge-primary badge-lg shrink-0 whitespace-nowrap">
+          <div className="font-roboto self-center text-white badge badge-secondary badge-xl shrink-0 whitespace-nowrap">
             {ParseDate(opportunity.dateFrom)} - {ParseDate(opportunity.dateTo)}
           </div>
         </span>
@@ -31,7 +31,7 @@ const OpportunityCard = ({ opportunity }) => {
           {opportunity.description}
         </p>
         <div className="card-actions justify-end flex-none">
-          <button className="btn btn-secondary text-white">Details</button>
+          <button className="btn btn-primary text-white">Details</button>
         </div>
       </div>
     </div>

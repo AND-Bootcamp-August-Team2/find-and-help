@@ -14,7 +14,7 @@ const Content = () => {
   }, []);
 
   return (
-    <div className="grid-in-content mr-6 h-max min-h-full p-10 w-full md:w-auto md:rounded-tr-2xl">
+    <div className="grid-in-content mr-6 h-max min-h-full p-6 w-full md:w-auto md:rounded-tr-2xl">
       <ul className="flex flex-col gap-6">
         {opportunities.map((opportunity, i) => (
           <li key={opportunity + i}>
