@@ -14,7 +14,7 @@ const NewOpportunityForm = ({setTitle, setDescription, setFromDate, setToDate, s
         <input
           type="text"
           placeholder="Type here"
-          className="input input-bordered w-full max-w-md bg-neutral "
+          className="input input-bordered w-full max-w-md bg-neutral text-black "
           onChange={input => setTitle(input.target.value)}
         />
         <label className="label pt-4">
