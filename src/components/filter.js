@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import Location from "./location";
 import { LocationContext } from "../contexts/locationContext";
+import { FilterContext } from "../contexts/filterContext";
 
 const Filter = () => {
   const [location] = useContext(LocationContext);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setFilterLocations] = useContext(FilterContext);
+
   return (
     <div className="bg-white">
       <h2 className="font-roboto uppercase font-bold text-xl pl-4">Filters</h2>
@@ -13,7 +17,10 @@ const Filter = () => {
           <ul>
             {location.map((location, i) => (
               <li key={location + i}>
-                <Location name={location.toString()} />
+                <Location
+                  name={location.toString()}
+                  setFilterLocation={setFilterLocations}
+                />
               </li>
             ))}
           </ul>
