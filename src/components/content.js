@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import OpportunityCard from "./opportunityCard";
 import { readOpportunities } from "../firebase/firebaseHandler";
 import { FilterContext } from "../contexts/filterContext";
@@ -6,8 +6,11 @@ import { FilterContext } from "../contexts/filterContext";
 const Content = () => {
   const [opportunities, setOpportunities] = useState([]);
   const [filteredOpportunities, setFilteredOpportunities] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  const [filterLocations, _] = useContext(FilterContext);
+  const { locationFilters, fromDateFilters, toDateFilters } =
+    useContext(FilterContext);
+  const [filterLocations] = locationFilters;
+  const [filterFromDate] = fromDateFilters;
+  const [filterToDate] = toDateFilters;
 
   useEffect(() => {
     const loadData = async () => {
@@ -18,17 +21,42 @@ const Content = () => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    if (filterLocations.length !== 0) {
-      setFilteredOpportunities(
-        opportunities.filter((opportunity) =>
+  const getFilteredOpportunities = useCallback(
+    (opportunities) => {
+      let myOpportunities = opportunities;
+
+      if (!filterLocations.length < 1) {
+        myOpportunities = myOpportunities.filter((opportunity) =>
           filterLocations.includes(opportunity.location)
-        )
-      );
-    } else {
-      setFilteredOpportunities(opportunities);
-    }
-  }, [filterLocations, opportunities]);
+        );
+      }
+
+      if (filterFromDate.length > 0) {
+        myOpportunities = myOpportunities.filter(
+          (opportunity) => opportunity.dateFrom >= filterFromDate
+        );
+      }
+
+      if (filterToDate.length > 0) {
+        myOpportunities = myOpportunities.filter(
+          (opportunity) => opportunity.dateTo >= filterToDate
+        );
+      }
+
+      return myOpportunities;
+    },
+    [filterFromDate, filterLocations, filterToDate]
+  );
+
+  useEffect(() => {
+    setFilteredOpportunities(getFilteredOpportunities(opportunities));
+  }, [
+    filterLocations,
+    getFilteredOpportunities,
+    opportunities,
+    filterFromDate,
+    filterToDate,
+  ]);
 
   return (
     <div className="grid-in-content mr-6 h-max min-h-full p-6 w-full md:w-auto md:rounded-tr-2xl">
