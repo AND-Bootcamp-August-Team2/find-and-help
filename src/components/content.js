@@ -23,27 +23,43 @@ const Content = () => {
 
   const getFilteredOpportunities = useCallback(
     (opportunities) => {
-      let myOpportunities = opportunities;
+      let filteringOpportunities = opportunities;
 
       if (!filterLocations.length < 1) {
-        myOpportunities = myOpportunities.filter((opportunity) =>
+        filteringOpportunities = filteringOpportunities.filter((opportunity) =>
           filterLocations.includes(opportunity.location)
         );
       }
 
       if (filterFromDate.length > 0) {
-        myOpportunities = myOpportunities.filter(
-          (opportunity) => opportunity.dateFrom >= filterFromDate
+        filteringOpportunities = filteringOpportunities.filter(
+          (opportunity) => {
+            const opportunityFromDate = new Date(opportunity.dateFrom);
+            const filterDate = new Date(filterFromDate);
+            if (opportunityFromDate && filterDate) {
+              return opportunityFromDate >= filterDate;
+            } else {
+              return null;
+            }
+          }
         );
       }
 
       if (filterToDate.length > 0) {
-        myOpportunities = myOpportunities.filter(
-          (opportunity) => opportunity.dateTo >= filterToDate
+        filteringOpportunities = filteringOpportunities.filter(
+          (opportunity) => {
+            const opportunityToDate = new Date(opportunity.dateTo);
+            const filterDate = new Date(filterToDate);
+            if (opportunityToDate && filterDate) {
+              return opportunityToDate <= filterDate;
+            } else {
+              return null;
+            }
+          }
         );
       }
 
-      return myOpportunities;
+      return filteringOpportunities;
     },
     [filterFromDate, filterLocations, filterToDate]
   );
