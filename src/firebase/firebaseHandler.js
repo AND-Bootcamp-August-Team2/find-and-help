@@ -1,4 +1,4 @@
-import { getDatabase, ref, get, set } from "firebase/database";
+import { getDatabase, ref, get, set, remove } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -107,4 +107,11 @@ export const reserveOpportunity = async (id) => {
       console.error(error);
       return false;
     });
+};
+
+export const deleteOpportunityById = (id) => {
+  const oppRef = ref(db, `opportunities/${id}`);
+  remove(oppRef).then((_) => {
+    alert("Successfully deleted");
+  });
 };
