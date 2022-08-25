@@ -34,7 +34,7 @@ const CongratulationsModal = ({ opportunity }) => {
 
           <h3 className="text-base-100">Next steps... 🐾</h3>
           <button
-            class="btn btn-secondary btn-block text-white mt-5"
+            className="btn btn-secondary btn-block text-white mt-5"
             onClick={gotoGcal(opportunity)}
           >
             Add to Google Calendar
