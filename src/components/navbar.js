@@ -1,6 +1,6 @@
 import React from "react";
-import FilterModal from "./filtermodal";
-import Opportunity from "./opportunity";
+import FilterModal from "./modals/filterModal";
+import AddOpportunityModal from "./modals/addOpportunityModal";
 
 const Navbar = () => {
   return (
@@ -24,7 +24,7 @@ const Navbar = () => {
             <FilterModal />
           </li>
           <li>
-            <Opportunity />
+            <AddOpportunityModal />
           </li>
         </ul>
       </div>
