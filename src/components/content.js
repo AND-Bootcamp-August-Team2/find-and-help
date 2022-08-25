@@ -34,7 +34,7 @@ const Content = () => {
     <div className="grid-in-content mr-6 h-max min-h-full p-6 w-full md:w-auto md:rounded-tr-2xl">
       <ul className="flex flex-col gap-6">
         {filteredOpportunities.map((opportunity, i) => (
-          <li key={opportunity + i}>
+          <li id={opportunity.id} key={opportunity + i}>
             <OpportunityCard opportunity={opportunity} />
           </li>
         ))}

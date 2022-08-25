@@ -19,12 +19,13 @@ export const readOpportunities = () => {
   return get(oppRef).then((snapshot) => {
     const childArray = [];
     snapshot.forEach((child) => {
-      const { dateFrom, dateTo, description, location, title, spots } =
+      const { dateFrom, dateTo, description, id, location, title, spots } =
         child.val();
       childArray.push({
         dateFrom,
         dateTo,
         description,
+        id,
         location,
         title,
         spots,
@@ -54,12 +55,13 @@ export const writeOpportunities = (
   title,
   spots
 ) => {
-  const id = createID();
+  const id = createUUID();
   const oppRef = ref(db, "opportunities/" + id);
   set(oppRef, {
     dateFrom: dateFrom,
     dateTo: dateTo,
     description: description,
+    id: id,
     location: location,
     title: title,
     spots: spots,
@@ -67,14 +69,42 @@ export const writeOpportunities = (
 };
 
 export const addLocations = (location) => {
-  const id = createID();
+  const id = createUUID();
   const locRef = ref(db, "locations/" + id);
   set(locRef, {
     location: location,
   });
 };
 
-const createID = () => {
-  const date = new Date();
-  return date.getTime().toString();
+const createUUID = () => {
+  return crypto.randomUUID();
+};
+
+// TODO: Refactor this into a readOpportunity, and a reserveOpportunity that calls it.
+export const reserveOpportunity = async (id) => {
+  // granb the opportunity from db
+  const oppRef = ref(db, `opportunities/${id}`);
+  get(oppRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const opportunity = snapshot.val();
+
+        if (opportunity.spots < 1) {
+          console.error("Error booking spot, less than one available");
+          return false;
+        }
+        opportunity.spots -= 1;
+        set(oppRef, {
+          ...opportunity,
+        });
+        return true;
+      } else {
+        console.log("No data available");
+        return false;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      return false;
+    });
 };

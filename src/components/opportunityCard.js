@@ -1,4 +1,5 @@
 import React from "react";
+import OpportunityDetailsModal from "./modals/opportunityDetailsModal";
 
 const ParseDate = (date) => {
   const dateParse = new Date(date).toLocaleDateString("en-gb");
@@ -31,7 +32,7 @@ function OpportunityCard({ opportunity }) {
           {opportunity.description}
         </p>
         <div className="card-actions justify-end flex-none">
-          <button className="btn btn-primary text-white">Details</button>
+          <OpportunityDetailsModal opportunity={opportunity} />
         </div>
       </div>
     </div>
