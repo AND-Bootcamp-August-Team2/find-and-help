@@ -35,6 +35,11 @@ export const readOpportunities = () => {
   });
 };
 
+const createTimeStamp = () => {
+  const date = new Date();
+  return date.getTime().toString();
+};
+
 export const readLocations = () => {
   const locRef = ref(db, "locations");
   return get(locRef).then((snapshot) => {
@@ -56,6 +61,7 @@ export const writeOpportunities = (
   spots
 ) => {
   const id = createUUID();
+  const timeStamp = createTimeStamp();
   const oppRef = ref(db, "opportunities/" + id);
   set(oppRef, {
     dateFrom: dateFrom,
@@ -65,6 +71,7 @@ export const writeOpportunities = (
     location: location,
     title: title,
     spots: spots,
+    timeStamp: timeStamp
   });
 };
 
