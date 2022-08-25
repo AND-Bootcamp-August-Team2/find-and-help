@@ -5,8 +5,11 @@ import { FilterContext } from "../contexts/filterContext";
 
 const Filter = () => {
   const [location] = useContext(LocationContext);
-  // eslint-disable-next-line no-unused-vars
-  const [_, setFilterLocations] = useContext(FilterContext);
+  const { locationFilters, fromDateFilters, toDateFilters } =
+    useContext(FilterContext);
+  const [, setFilterLocations] = locationFilters;
+  const [, setFilterFromDate] = fromDateFilters;
+  const [, setFilterToDate] = toDateFilters;
 
   return (
     <div className="bg-white">
@@ -49,6 +52,7 @@ const Filter = () => {
                 shadow-sm
                 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
                 text-base-100"
+                onChange={(input) => setFilterFromDate(input.target.value)}
               />
             </li>
             <li className="pt-2">
@@ -70,6 +74,7 @@ const Filter = () => {
                 shadow-sm
                 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
                 text-base-100"
+                onChange={(input) => setFilterToDate(input.target.value)}
               />
             </li>
           </ul>
