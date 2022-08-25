@@ -4,6 +4,8 @@ export const FilterContext = createContext();
 
 export const FilterContextProvider = ({ children }) => {
   const [filterLocations, _setFilterLocations] = useState([]);
+  const [filterFromDate, setFilterFromDate] = useState([]);
+  const [filterToDate, setFilterToDate] = useState([]);
 
   const setFilterLocations = (location) => {
     if (!filterLocations.includes(location)) {
@@ -17,7 +19,13 @@ export const FilterContextProvider = ({ children }) => {
   };
 
   return (
-    <FilterContext.Provider value={[filterLocations, setFilterLocations]}>
+    <FilterContext.Provider
+      value={{
+        locationFilters: [filterLocations, setFilterLocations],
+        fromDateFilters: [filterFromDate, setFilterFromDate],
+        toDateFilters: [filterToDate, setFilterToDate],
+      }}
+    >
       {children}
     </FilterContext.Provider>
   );

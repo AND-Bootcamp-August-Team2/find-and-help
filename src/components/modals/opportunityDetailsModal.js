@@ -1,6 +1,9 @@
 import React from "react";
 import { reserveOpportunity } from "../../firebase/firebaseHandler";
+import ParseDate from "../../utils/parseDate";
+import ToggleModal from "../../utils/toggleModal";
 import CongratulationsModal from "./congratulationsModal";
+import DeleteOpportunityModal from "./deleteOpportunityModal";
 
 function OpportunityDetailsModal({ opportunity }) {
   function openCongratulationsModal() {
@@ -8,21 +11,13 @@ function OpportunityDetailsModal({ opportunity }) {
     if (!success) {
       alert("Couldn't do this.");
     }
-    document.getElementById(
-      opportunity.id + "-congratulations-modal"
-    ).checked = true;
+    ToggleModal(opportunity.id + "-congratulations-modal");
   }
-
-  const ParseDate = (date) => {
-    const dateParse = new Date(date).toLocaleDateString("en-gb");
-    return dateParse === "Invalid Date" ? date : dateParse;
-  };
-
   return (
     <div>
       <label
         htmlFor={opportunity.id + "-details-modal"}
-        className="btn btn-secondary w-40 modal-button text-s md:w-48 md:text-white md:text-lg"
+        className="btn btn-primary text-white"
       >
         View Details
       </label>
@@ -33,22 +28,34 @@ function OpportunityDetailsModal({ opportunity }) {
       />
       <div className="modal">
         <div className="modal-box">
-          <h2 className="font-bold text-base-100 text-lg">
-            {opportunity.title}
-          </h2>
-          <div className="badge text-white bg-primary badge-outline my-4">
-            👥 {opportunity.spots} spots available
-          </div>
-
+          <span className="flex gap-2 justify-between items-center flex-wrap md:flex-nowrap">
+            <h2 className="font-bold text-base-100 text-lg md:text-2xl">
+              {opportunity.title}
+            </h2>
+            <div className="btn-group">
+              <label
+                className="btn btn-primary text-white"
+                htmlFor={opportunity.id + "-details-modal"}
+                onClick={() => {
+                  ToggleModal(`${opportunity.id}-delete-modal`, true);
+                }}
+              >
+                Delete
+              </label>
+            </div>
+          </span>
           <div className="flex flex-wrap items-baseline gap-2">
             <h3 className="text-lg text-base-100">{opportunity.location}</h3>
-            <span className="flex gap-2 justify-between">
-              <div className="self-center text-white badge badge-secondary badge-xl shrink-0 whitespace-nowrap">
-                {ParseDate(opportunity.dateFrom)} -{" "}
-                {ParseDate(opportunity.dateTo)}
-              </div>
-            </span>
+            <div className="badge text-white bg-primary badge-outline my-4">
+              👥 {opportunity.spots} spots available
+            </div>
           </div>
+          <span className="flex gap-2 justify-between">
+            <div className="self-center text-white badge badge-secondary badge-xl shrink-0 whitespace-nowrap">
+              {ParseDate(opportunity.dateFrom)} -{" "}
+              {ParseDate(opportunity.dateTo)}
+            </div>
+          </span>
 
           <p className="text-base-100 py-5">{opportunity.description}</p>
 
@@ -84,6 +91,7 @@ function OpportunityDetailsModal({ opportunity }) {
         </div>
       </div>
       <CongratulationsModal opportunity={opportunity} />
+      <DeleteOpportunityModal opportunity={opportunity} />
     </div>
   );
 }

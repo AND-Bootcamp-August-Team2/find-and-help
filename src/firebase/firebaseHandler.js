@@ -1,4 +1,4 @@
-import { getDatabase, ref, get, set } from "firebase/database";
+import { getDatabase, ref, get, set, remove } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -35,6 +35,11 @@ export const readOpportunities = () => {
   });
 };
 
+const createTimeStamp = () => {
+  const date = new Date();
+  return date.getTime().toString();
+};
+
 export const readLocations = () => {
   const locRef = ref(db, "locations");
   return get(locRef).then((snapshot) => {
@@ -56,6 +61,7 @@ export const writeOpportunities = (
   spots
 ) => {
   const id = createUUID();
+  const timeStamp = createTimeStamp();
   const oppRef = ref(db, "opportunities/" + id);
   set(oppRef, {
     dateFrom: dateFrom,
@@ -65,6 +71,7 @@ export const writeOpportunities = (
     location: location,
     title: title,
     spots: spots,
+    timeStamp: timeStamp
   });
 };
 
@@ -107,4 +114,11 @@ export const reserveOpportunity = async (id) => {
       console.error(error);
       return false;
     });
+};
+
+export const deleteOpportunityById = (id) => {
+  const oppRef = ref(db, `opportunities/${id}`);
+  remove(oppRef).then((_) => {
+    alert("Successfully deleted");
+  });
 };
