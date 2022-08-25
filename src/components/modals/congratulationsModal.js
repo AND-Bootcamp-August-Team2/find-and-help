@@ -1,11 +1,8 @@
 import React from "react";
 import { gotoGcal } from "../../gcal/gcal";
+import ParseDate from "../../utils/parseDate";
 
 const CongratulationsModal = ({ opportunity }) => {
-  const ParseDate = (date) => {
-    const dateParse = new Date(date).toLocaleDateString("en-gb");
-    return dateParse === "Invalid Date" ? date : dateParse;
-  };
   return (
     <div>
       <input
