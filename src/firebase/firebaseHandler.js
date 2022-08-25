@@ -71,7 +71,7 @@ export const writeOpportunities = (
     location: location,
     title: title,
     spots: spots,
-    timeStamp: timeStamp
+    timeStamp: timeStamp,
   });
 };
 
@@ -89,9 +89,8 @@ const createUUID = () => {
 
 // TODO: Refactor this into a readOpportunity, and a reserveOpportunity that calls it.
 export const reserveOpportunity = async (id) => {
-  // granb the opportunity from db
   const oppRef = ref(db, `opportunities/${id}`);
-  get(oppRef)
+  return get(oppRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
         const opportunity = snapshot.val();
