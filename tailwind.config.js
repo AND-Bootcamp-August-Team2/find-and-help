@@ -34,7 +34,7 @@ module.exports = {
           success: "#5AC328",
           warning: "#FFC800",
           error: "#F87272",
-          "accent-orange": "#FF7900",
+          slackPurple: "#4a154b",
         },
       },
     ],
