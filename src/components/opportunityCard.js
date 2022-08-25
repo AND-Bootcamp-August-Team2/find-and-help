@@ -1,10 +1,6 @@
 import React from "react";
+import ParseDate from "../utils/parseDate";
 import OpportunityDetailsModal from "./modals/opportunityDetailsModal";
-
-const ParseDate = (date) => {
-  const dateParse = new Date(date).toLocaleDateString("en-gb");
-  return dateParse === "Invalid Date" ? date : dateParse;
-};
 
 function OpportunityCard({ opportunity }) {
   return (
