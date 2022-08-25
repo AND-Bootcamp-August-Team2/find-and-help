@@ -11,7 +11,7 @@ function OpportunityDetailsModal({ opportunity }) {
     if (!success) {
       alert("Couldn't do this.");
     }
-    ToggleModal(opportunity.id + "-congratulations-modal");
+    ToggleModal(opportunity.id + "-congratulations-modal", true);
   }
   return (
     <div>
