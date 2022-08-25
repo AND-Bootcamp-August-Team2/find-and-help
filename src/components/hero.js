@@ -1,5 +1,5 @@
 import React from "react";
-import OpportunityLg from "./opportunityLg";
+import AddOpportunityModal from "./modals/addOpportunityModal";
 
 const Hero = () => {
   return (
@@ -17,7 +17,7 @@ const Hero = () => {
             </svg>
             Help
           </h1>
-          <OpportunityLg />
+          <AddOpportunityModal id="hero-modal" />
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ const Navbar = () => {
             <FilterModal />
           </li>
           <li>
-            <AddOpportunityModal />
+            <AddOpportunityModal id="navbar-modal" />
           </li>
         </ul>
       </div>

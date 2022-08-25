@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddOpportunityForm from "../forms/addOpportunityForm";
 import { writeOpportunities } from "../../firebase/firebaseHandler";
 
-const AddOpportunityModal = () => {
+const AddOpportunityModal = ({ id }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fromDate, setFromDate] = useState("");
@@ -10,11 +10,13 @@ const AddOpportunityModal = () => {
   const [location, setLocation] = useState("");
   const [spots, setSpots] = useState(1);
 
+  console.log(id);
+
   return (
     <div>
       <label
-        htmlFor="opportunity-modal"
-        className="btn btn-sm flex gap-2 items-center btn-white text-black w-25 modal-button text-s shadow-sm hover:bg-slate-800 hover:text-white hover:border-slate-800"
+        htmlFor={id}
+        className="btn btn-sm md:btn-md flex gap-2 items-center btn-white w-25 md:w-48 modal-button text-s shadow-sm hover:bg-slate-800 hover:text-white hover:border-slate-800"
       >
         Add Opportunity
         <svg
@@ -30,10 +32,12 @@ const AddOpportunityModal = () => {
           />
         </svg>
       </label>
-      <input type="checkbox" id="opportunity-modal" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">New Volunteering Opportunity</h3>
+      <input type="checkbox" id={id} className="modal-toggle" />
+      <div className="modal ">
+        <div className="modal-box ">
+          <h3 className="font-roboto text-gray-800 text-lg">
+            New Volunteering Opportunity
+          </h3>
           <AddOpportunityForm
             setTitle={setTitle}
             setDescription={setDescription}
@@ -43,12 +47,12 @@ const AddOpportunityModal = () => {
             setLocation={setLocation}
           />
           <div className="modal-action">
-            <label htmlFor="opportunity-modal" className="btn btn-ghost">
+            <label htmlFor={id} className="btn btn-ghost text-gray-800">
               Cancel
             </label>
             <label
-              htmlFor="opportunity-modal"
-              className="btn btn-primary"
+              htmlFor={id}
+              className="btn btn-primary text-white"
               onClick={() => {
                 writeOpportunities(
                   fromDate,
