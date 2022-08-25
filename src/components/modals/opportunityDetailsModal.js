@@ -7,11 +7,18 @@ import DeleteOpportunityModal from "./deleteOpportunityModal";
 
 function OpportunityDetailsModal({ opportunity }) {
   function openCongratulationsModal() {
-    const success = reserveOpportunity(opportunity.id);
-    if (!success) {
-      alert("Couldn't do this.");
+    if (opportunity.spots === 0) {
+      alert("Sorry, but there are no spots left to reserve!");
+      return;
     }
-    ToggleModal(opportunity.id + "-congratulations-modal");
+
+    reserveOpportunity(opportunity.id).then((successful) => {
+      if (!successful) {
+        alert("Sorry, looks like someone got the last spot before you! 😭");
+        return;
+      }
+      ToggleModal(opportunity.id + "-congratulations-modal", true);
+    });
   }
   return (
     <div>
