@@ -33,7 +33,7 @@ const AddOpportunityForm = ({
           onChange={(input) => setDescription(input.target.value)}
         ></textarea>
         <label className="label pt-4">
-          <span className="label-text text-gray-800">Locations</span>
+          <span className="label-text text-gray-800">Location</span>
         </label>
         <select
           className="select select-bordered w-full max-w-md bg-white text-black"
