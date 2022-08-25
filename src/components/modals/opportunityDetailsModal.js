@@ -22,7 +22,7 @@ function OpportunityDetailsModal({ opportunity }) {
     <div>
       <label
         htmlFor={opportunity.id + "-details-modal"}
-        className="btn btn-secondary w-40 modal-button text-s md:w-48 md:text-white md:text-lg"
+        className="btn btn-primary text-white"
       >
         View Details
       </label>
