@@ -34,14 +34,14 @@ function OpportunityDetailsModal({ opportunity }) {
         className="modal-toggle"
       />
       <div className="modal">
-        <div className="modal-box">
+        <div className="modal-box !bg-white">
           <span className="flex gap-2 justify-between items-center flex-wrap md:flex-nowrap">
-            <h2 className="font-bold text-base-100 text-lg md:text-2xl">
+            <h2 className="font-roboto font-bold text-base-100 text-lg md:text-2xl">
               {opportunity.title}
             </h2>
             <div className="btn-group">
               <label
-                className="btn btn-primary text-white"
+                className="btn btn-primary btn-outline text-white  drop-shadow-sm"
                 htmlFor={opportunity.id + "-details-modal"}
                 onClick={() => {
                   ToggleModal(`${opportunity.id}-delete-modal`, true);
@@ -51,18 +51,26 @@ function OpportunityDetailsModal({ opportunity }) {
               </label>
             </div>
           </span>
+
           <div className="flex flex-wrap items-baseline gap-2">
-            <h3 className="text-lg text-base-100">{opportunity.location}</h3>
-            <div className="badge text-white bg-primary badge-outline my-4">
+            <div
+              className={`badge  ${
+                opportunity.spots > 0
+                  ? `btn-neutral text-gray-800`
+                  : `btn-primary text-white`
+              } badge-outline`}
+            >
               👥 {opportunity.spots} spots available
             </div>
-          </div>
-          <span className="flex gap-2 justify-between">
-            <div className="self-center text-white badge badge-secondary badge-xl shrink-0 whitespace-nowrap">
-              {ParseDate(opportunity.dateFrom)} -{" "}
-              {ParseDate(opportunity.dateTo)}
+            <div className="flex gap-2 justify-between">
+              <div className="self-center text-white badge badge-secondary badge-xl shrink-0 whitespace-nowrap">
+                {ParseDate(opportunity.dateFrom)} -{" "}
+                {ParseDate(opportunity.dateTo)}
+              </div>
             </div>
-          </span>
+          </div>
+
+          <h3 className="text-lg text-base-100 mt-4">{opportunity.location}</h3>
 
           <p className="text-base-100 py-5">{opportunity.description}</p>
 
@@ -83,12 +91,12 @@ function OpportunityDetailsModal({ opportunity }) {
           <div className="modal-action">
             <label
               htmlFor={opportunity.id + "-details-modal"}
-              className="btn btn-ghost"
+              className="btn btn-ghost text-gray-800"
             >
               Cancel
             </label>
             <label
-              className="btn btn-secondary text-white"
+              className="btn btn-primary text-white"
               htmlFor={opportunity.id + "-details-modal"}
               onClick={openCongratulationsModal}
             >

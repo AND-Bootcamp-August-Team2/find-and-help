@@ -14,29 +14,29 @@ const AddOpportunityForm = ({
 
   return (
     <div>
-      <div className="form-control w-full max-w-md">
+      <div className="form-control w-full max-w-md bg-gray-100 rounded-md mt-2">
         <label className="label">
-          <span className="label-text">Opportunity Title</span>
+          <span className="label-text text-gray-800">Opportunity Title</span>
         </label>
         <input
           type="text"
           placeholder="Type here"
-          className="input input-bordered w-full max-w-md bg-neutral text-black "
+          className="input placeholder-slate-500 input-bordered w-full max-w-md bg-white text-black "
           onChange={(input) => setTitle(input.target.value)}
         />
         <label className="label pt-4">
-          <span className="label-text">Description</span>
+          <span className="label-text text-gray-800">Description</span>
         </label>
         <textarea
-          className="textarea textarea-bordered h-24"
+          className="textarea placeholder-slate-500 textarea-bordered h-24 bg-white text-black"
           placeholder="Type here"
           onChange={(input) => setDescription(input.target.value)}
         ></textarea>
         <label className="label pt-4">
-          <span className="label-text">Locations</span>
+          <span className="label-text text-gray-800">Location</span>
         </label>
         <select
-          className="select select-bordered w-full max-w-md"
+          className="select select-bordered w-full max-w-md bg-white text-black"
           onChange={(input) => setLocation(input.target.value)}
         >
           {location.map((location, i) => (
@@ -44,14 +44,14 @@ const AddOpportunityForm = ({
           ))}
         </select>
         <label className="label pt-4">
-          <span className="label-text">Availability</span>
+          <span className="label-text text-gray-800">Availability</span>
         </label>
         <input
           type="text"
           pattern="^[1-9][0-9]*$"
           placeholder="Number of available spots"
           value={spotValue}
-          className="input input-bordered w-full max-w-md"
+          className="input input-bordered w-full max-w-md bg-white text-black"
           onChange={(input) => {
             setSpotValue(
               input.target.validity.valid ? input.target.value : spotValue
@@ -65,7 +65,7 @@ const AddOpportunityForm = ({
         />
         <ul>
           <li className="pt-4">
-            <label htmlFor="fromDate" className="label-text">
+            <label htmlFor="fromDate" className="label-text text-gray-800">
               From:
             </label>
             <input
@@ -79,13 +79,13 @@ const AddOpportunityForm = ({
                 border-gray-300
                 shadow-sm
                 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50
-                bg-neutral
-                text-slate-400"
+                text-black
+                bg-white"
               onChange={(input) => setFromDate(input.target.value)}
             />
           </li>
           <li className="">
-            <label htmlFor="toDate" className="label-text pt-4">
+            <label htmlFor="toDate" className="label-text pt-4 text-gray-800">
               To:
             </label>
             <input
@@ -99,8 +99,8 @@ const AddOpportunityForm = ({
                 border-gray-300
                 shadow-sm
                 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50
-                bg-neutral
-                text-slate-400"
+                text-black
+                bg-white"
               onChange={(input) => setToDate(input.target.value)}
             />
           </li>

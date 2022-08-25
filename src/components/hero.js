@@ -1,5 +1,5 @@
 import React from "react";
-import OpportunityLg from "./opportunityLg";
+import AddOpportunityModal from "./modals/addOpportunityModal";
 import SlackBanner from "./SlackBanner";
 
 const Hero = () => {
@@ -19,7 +19,7 @@ const Hero = () => {
             </svg>
             Help
           </h1>
-          <OpportunityLg />
+          <AddOpportunityModal id="hero-modal" />
         </div>
       </div>
     </div>
