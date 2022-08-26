@@ -1,10 +1,12 @@
 import React from "react";
 import AddOpportunityModal from "./modals/addOpportunityModal";
+import SlackBanner from "./SlackBanner";
 
 const Hero = () => {
   return (
-    <div className="bg-primary hidden grid-in-hero md:hero ">
-      <div className="hero-content flex-col">
+    <div className="bg-primary hidden grid-in-hero md:hero">
+      <SlackBanner />
+      <div className="hero-content">
         <div className="flex flex-col gap-4 items-center md:flex-row md:gap-8">
           <h1 className="flex gap-2 font-roboto font-bold text-7xl text-white">
             Find
